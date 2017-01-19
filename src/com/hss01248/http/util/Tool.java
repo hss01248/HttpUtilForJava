@@ -6,15 +6,98 @@ import com.hss01248.http.config.BaseNetBean;
 import com.hss01248.http.config.ConfigInfo;
 import com.hss01248.http.config.NetDefaultConfig;
 import com.hss01248.http.wrapper.MyNetListener;
+import okhttp3.ResponseBody;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.net.FileNameMap;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.*;
 
 /**
  * Created by Administrator on 2016/9/21.
  */
 public class Tool {
+
+    public static boolean writeResponseBodyToDisk(ResponseBody body, String path) {
+        try {
+            // todo change the file location/name according to your needs
+            File futureStudioIconFile = new File(path);
+            InputStream inputStream = null;
+            OutputStream outputStream = null;
+            try {
+                byte[] fileReader = new byte[4096];
+                long fileSize = body.contentLength();
+                long fileSizeDownloaded = 0;
+                inputStream = body.byteStream();
+                outputStream = new FileOutputStream(futureStudioIconFile);
+                while (true) {
+                    int read = inputStream.read(fileReader);
+                    if (read == -1) {
+                        break;
+                    }
+                    outputStream.write(fileReader, 0, read);
+                    fileSizeDownloaded += read;
+                    MyLog.d( "file download: " + fileSizeDownloaded + " of " + fileSize);//  这里也可以实现进度监听
+                }
+
+                outputStream.flush();
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            } finally {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public static String urlEncode(String string)  {
+        String str = "";
+        try {
+            str=  URLEncoder.encode(string,"UTF-8");
+            return str;
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return string;
+        }
+    }
+
+    public static String generateUrlOfGET(ConfigInfo info){
+        String parms = Tool.getKeyValueStr(info.params);
+        String url = info.url;
+        if(TextUtils.isNotEmpty(parms)){
+            url = url+"?"+parms;
+        }
+        return url;
+    }
+
+    public static String getKeyValueStr(Map<String,String> params) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(Map.Entry<String,String> param   : params.entrySet()){
+            stringBuilder.append(param.getKey())
+                    .append("=")
+                    .append(param.getValue())
+                    .append("&");
+        }
+        return stringBuilder.toString();
+    }
+
+
+
+
 
     public static void addToken(Map map) {
         if (map != null){
@@ -399,15 +482,22 @@ public class Tool {
         }
     }
 
-    /*public static String getMimeType(File file){
-        String suffix = getSuffix(file);
+    public static String getMimeType(String fileUrl){
+
+        FileNameMap fileNameMap = URLConnection.getFileNameMap();
+        String type = fileNameMap.getContentTypeFor(fileUrl);
+        return type;
+
+
+
+        /*String suffix = getSuffix(file);
         if (suffix == null) {
-            return "file*//*";
+            return "file";
         }
         String type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(suffix);
         if (type != null || !type.isEmpty()) {
             return type;
-        }
-        return "file*//*";
-    }*/
+        }*/
+        //return "file";
+    }
 }

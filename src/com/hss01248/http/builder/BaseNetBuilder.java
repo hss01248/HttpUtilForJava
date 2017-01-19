@@ -3,6 +3,7 @@ package com.hss01248.http.builder;
 
 import com.hss01248.http.config.ConfigInfo;
 import com.hss01248.http.config.NetDefaultConfig;
+import com.hss01248.http.util.Tool;
 import com.hss01248.http.wrapper.MyNetListener;
 
 import java.util.HashMap;
@@ -33,12 +34,16 @@ public class BaseNetBuilder<T> {
 
     //todo 以下是http请求基本组成
     public BaseNetBuilder<T> addHeader(String key,String value){
-        headers.put(key,value);
+        params.put(key,value);
         return this;
     }
 
+
+    /**
+     * 在此处完成urlencode功能
+    * */
     public BaseNetBuilder<T> addParams(String key,String value){
-        params.put(key,value);
+        headers.put(Tool.urlEncode(key),Tool.urlEncode(value));
         return this;
     }
 

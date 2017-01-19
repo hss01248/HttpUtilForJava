@@ -10,9 +10,9 @@ public abstract class IClient {
 
     protected abstract  <E> ConfigInfo<E> postString(ConfigInfo<E> info);
 
-    protected abstract  <E> ConfigInfo<E> download(ConfigInfo<E> info);
+    protected abstract   ConfigInfo download(ConfigInfo info);
 
-    protected abstract  <E> ConfigInfo<E> upload(ConfigInfo<E> info);
+    protected abstract   ConfigInfo upload(ConfigInfo info);
 
     public <E> ConfigInfo<E> start(ConfigInfo<E> info){
         return info;

@@ -18,6 +18,8 @@ public class ConfigInfo<T> {
 
     }
 
+    public Object request;//跟具体client有关的请求对象
+
 
     //核心参数
     public int method = NetDefaultConfig.Method.GET;

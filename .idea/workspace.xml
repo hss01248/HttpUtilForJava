@@ -2,52 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f1c2bb0-7e58-4fa6-ab93-fe5e2e931752" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_23.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_5_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_1_11_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_javax_mail_1_5_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_greenrobot_eventbus_3_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_json_json_20141113.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_simplejavamail_simple_java_mail_4_1_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_21.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/builder/BaseNetBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/builder/DownloadBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/builder/IBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/builder/JsonRequestBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/builder/ProgressBaseBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/builder/StandardJsonRequestBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/builder/StringRequestBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/builder/UploadRequestBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/config/BaseNetBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/config/ConfigInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/config/HttpsConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/config/NetDefaultConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/https/HttpsUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/interfaces/IClient.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/okhttp/NoCacheInterceptor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/okhttp/OkClient.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/okhttp/UseragentInterceptor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/okhttp/progress/ProgressEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/okhttp/progress/ProgressInterceptor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/okhttp/progress/ProgressResponseBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/okhttp/progress/UploadFileRequestBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/util/MailUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/util/MyJson.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/util/MyLog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/util/TextUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/util/Tool.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/wrapper/MyNetApi2.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/wrapper/MyNetListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/hss01248/http/wrapper/ProxyTools.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tains.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/hss01248/http/builder/BaseNetBuilder.java" afterPath="$PROJECT_DIR$/src/com/hss01248/http/builder/BaseNetBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/hss01248/http/config/ConfigInfo.java" afterPath="$PROJECT_DIR$/src/com/hss01248/http/config/ConfigInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/hss01248/http/interfaces/IClient.java" afterPath="$PROJECT_DIR$/src/com/hss01248/http/interfaces/IClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/hss01248/http/okhttp/OkClient.java" afterPath="$PROJECT_DIR$/src/com/hss01248/http/okhttp/OkClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/hss01248/http/util/TextUtils.java" afterPath="$PROJECT_DIR$/src/com/hss01248/http/util/TextUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/hss01248/http/util/Tool.java" afterPath="$PROJECT_DIR$/src/com/hss01248/http/util/Tool.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,13 +26,40 @@
       <file leaf-file-name="OkClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/okhttp/OkClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="406">
+              <caret line="159" column="92" lean-forward="false" selection-start-line="159" selection-start-column="92" selection-end-line="159" selection-end-column="92" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#279#280#0" expanded="true" />
-                <element signature="e#306#307#0" expanded="true" />
+                <element signature="method#buildHttpClient#0;class#OkClient#0" expanded="false" />
+                <element signature="e#651#958#0" expanded="true" />
+                <element signature="e#957#958#0" expanded="true" />
+                <element signature="method#getString#0;class#OkClient#0" expanded="false" />
+                <element signature="method#postString#0;class#OkClient#0" expanded="false" />
+                <element signature="method#download#0;class#OkClient#0" expanded="false" />
+                <element signature="e#2172#2385#0" expanded="true" />
+                <element signature="e#2384#2385#0" expanded="true" />
+                <element signature="method#upload#0;class#OkClient#0" expanded="false" />
+                <element signature="e#2759#3000#0" expanded="true" />
+                <element signature="e#2999#3000#0" expanded="true" />
+                <element signature="method#addHeaders#0;class#OkClient#0" expanded="false" />
+                <element signature="method#getFormBody#0;class#OkClient#0" expanded="false" />
+                <element signature="method#addPostBody#0;class#OkClient#0" expanded="false" />
+                <element signature="method#addUploadBody#0;class#OkClient#0" expanded="false" />
+                <element signature="method#handleStringRequest#0;class#OkClient#0" expanded="false" />
+                <element signature="e#5748#5955#0" expanded="true" />
+                <element signature="e#5954#5955#0" expanded="true" />
+                <element signature="method#handleResoponse#0;class#OkClient#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/interfaces/IClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,6 +73,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>configInfo</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -98,7 +90,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/com/hss01248/http/builder/IClient.java" />
-        <option value="$PROJECT_DIR$/src/com/hss01248/http/builder/BaseNetBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/hss01248/http/builder/StringRequestBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/hss01248/http/builder/StandardJsonRequestBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/hss01248/http/builder/JsonRequestBuilder.java" />
@@ -116,11 +107,8 @@
         <option value="$PROJECT_DIR$/src/com/hss01248/http/util/MyLog.java" />
         <option value="$PROJECT_DIR$/src/com/hss01248/http/util/MailUtil.java" />
         <option value="$PROJECT_DIR$/src/com/hss01248/http/okhttp/RetrofitClient.java" />
-        <option value="$PROJECT_DIR$/src/com/hss01248/http/interfaces/IClient.java" />
-        <option value="$PROJECT_DIR$/src/com/hss01248/http/okhttp/OkClient.java" />
         <option value="$PROJECT_DIR$/src/com/hss01248/http/wrapper/MyNetApi2.java" />
         <option value="$PROJECT_DIR$/src/com/hss01248/http/wrapper/MyNetListener.java" />
-        <option value="$PROJECT_DIR$/src/com/hss01248/http/util/TextUtils.java" />
         <option value="$PROJECT_DIR$/src/com/hss01248/http/util/MyJson.java" />
         <option value="$PROJECT_DIR$/src/com/hss01248/http/okhttp/UseragentInterceptor.java" />
         <option value="$PROJECT_DIR$/src/com/hss01248/http/okhttp/NoCacheInterceptor.java" />
@@ -129,8 +117,13 @@
         <option value="$PROJECT_DIR$/src/com/hss01248/http/okhttp/progress/UploadFileRequestBody.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/com/hss01248/http/wrapper/Tool.java" />
-        <option value="$PROJECT_DIR$/src/com/hss01248/http/util/Tool.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/com/hss01248/http/builder/BaseNetBuilder.java" />
+        <option value="$PROJECT_DIR$/src/com/hss01248/http/util/TextUtils.java" />
         <option value="$PROJECT_DIR$/src/com/hss01248/http/config/ConfigInfo.java" />
+        <option value="$PROJECT_DIR$/src/com/hss01248/http/util/Tool.java" />
+        <option value="$PROJECT_DIR$/src/com/hss01248/http/interfaces/IClient.java" />
+        <option value="$PROJECT_DIR$/src/com/hss01248/http/okhttp/OkClient.java" />
       </list>
     </option>
   </component>
@@ -194,6 +187,56 @@
     <panes>
       <pane id="ProjectPane">
         <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tains" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tains" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.squareup.okhttp3:okhttp:3.5.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="okhttp-3.5.0.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="okhttp3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tains" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.squareup.okhttp3:okhttp:3.5.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="okhttp-3.5.0.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="tains" />
@@ -310,6 +353,50 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tains" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HttpUtil" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tains" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HttpUtil" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="builder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -318,7 +405,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -326,6 +413,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -719,12 +807,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1484805893455</updated>
-      <workItem from="1484805896830" duration="6849000" />
+      <workItem from="1484805896830" duration="14878000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6849000" />
+    <option name="totallyTimeSpent" value="14878000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -741,7 +829,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925472" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973205" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -897,28 +985,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/interfaces/IClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" column="20" lean-forward="false" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
-          <folding>
-            <element signature="e#517#518#0" expanded="true" />
-            <element signature="e#544#545#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/util/TextUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="43" lean-forward="false" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-          <folding>
-            <element signature="e#158#159#0" expanded="true" />
-            <element signature="e#208#209#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/wrapper/MyLog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -1021,7 +1087,7 @@
         <state relative-caret-position="230">
           <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1031,7 +1097,7 @@
         <state relative-caret-position="-97">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1049,18 +1115,6 @@
         <state relative-caret-position="414">
           <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/builder/BaseNetBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="62" column="46" lean-forward="false" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#368#383#0" expanded="true" />
-            <element signature="e#438#453#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1138,36 +1192,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/util/Tool.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/builder/BaseNetBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="42" column="23" lean-forward="false" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1484811617800" expanded="false" signature="6281:6304" ph=" { " />
-            <marker date="1484811617800" expanded="false" signature="6340:6358" ph=" }" />
+            <element signature="e#404#419#0" expanded="true" />
+            <element signature="e#474#489#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/util/TextUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+          <folding>
+            <element signature="e#158#159#0" expanded="true" />
+            <element signature="e#208#209#0" expanded="true" />
+            <element signature="e#258#259#0" expanded="true" />
+            <element signature="e#294#295#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/config/ConfigInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-983">
-          <caret line="201" column="24" lean-forward="false" selection-start-line="201" selection-start-column="24" selection-end-line="201" selection-end-column="24" />
+        <state relative-caret-position="427">
+          <caret line="20" column="44" lean-forward="false" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/okhttp/OkClient.java">
+    <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/util/Tool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state relative-caret-position="650">
+          <caret line="500" column="10" lean-forward="false" selection-start-line="500" selection-start-column="10" selection-end-line="500" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#279#280#0" expanded="true" />
-            <element signature="e#306#307#0" expanded="true" />
+            <marker date="1484820627282" expanded="false" signature="8929:8952" ph=" { " />
+            <marker date="1484820627282" expanded="false" signature="8988:9006" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/squareup/okhttp3/okhttp/3.5.0/okhttp-3.5.0-sources.jar!/okhttp3/FormBody.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="27" column="47" lean-forward="false" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/interfaces/IClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hss01248/http/okhttp/OkClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="159" column="92" lean-forward="false" selection-start-line="159" selection-start-column="92" selection-end-line="159" selection-end-column="92" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#buildHttpClient#0;class#OkClient#0" expanded="false" />
+            <element signature="e#651#958#0" expanded="true" />
+            <element signature="e#957#958#0" expanded="true" />
+            <element signature="method#getString#0;class#OkClient#0" expanded="false" />
+            <element signature="method#postString#0;class#OkClient#0" expanded="false" />
+            <element signature="method#download#0;class#OkClient#0" expanded="false" />
+            <element signature="e#2172#2385#0" expanded="true" />
+            <element signature="e#2384#2385#0" expanded="true" />
+            <element signature="method#upload#0;class#OkClient#0" expanded="false" />
+            <element signature="e#2759#3000#0" expanded="true" />
+            <element signature="e#2999#3000#0" expanded="true" />
+            <element signature="method#addHeaders#0;class#OkClient#0" expanded="false" />
+            <element signature="method#getFormBody#0;class#OkClient#0" expanded="false" />
+            <element signature="method#addPostBody#0;class#OkClient#0" expanded="false" />
+            <element signature="method#addUploadBody#0;class#OkClient#0" expanded="false" />
+            <element signature="method#handleStringRequest#0;class#OkClient#0" expanded="false" />
+            <element signature="e#5748#5955#0" expanded="true" />
+            <element signature="e#5954#5955#0" expanded="true" />
+            <element signature="method#handleResoponse#0;class#OkClient#0" expanded="false" />
           </folding>
         </state>
       </provider>
