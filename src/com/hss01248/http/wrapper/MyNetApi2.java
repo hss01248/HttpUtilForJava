@@ -7,6 +7,7 @@ import com.hss01248.http.config.HttpsConfig;
 import com.hss01248.http.config.NetDefaultConfig;
 import com.hss01248.http.interfaces.IClient;
 import com.hss01248.http.okhttp.OkClient;
+import com.hss01248.http.util.MyLog;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,11 @@ import java.util.ArrayList;
 public class MyNetApi2 {
 
 
-    public static IClient adapter;
+    public static IClient getClient() {
+        return OkClient.getInstance();
+    }
+
+
 
 
     /**
@@ -37,7 +42,7 @@ public class MyNetApi2 {
     public static void init(String baseUrl){
 
         NetDefaultConfig.baseUrl = baseUrl;
-        MyNetApi2.adapter = new OkClient();//如果要使用rxjava,将RetrofitClient改成RxRetrofitClient即可.
+        //MyNetApi2.client =  OkClient.getInstance();//如果要使用rxjava,将RetrofitClient改成RxRetrofitClient即可.
 
         NetDefaultConfig.USER_AGENT = System.getProperty("http.agent");
         MyLog.e("user-agent:"+ NetDefaultConfig.USER_AGENT);

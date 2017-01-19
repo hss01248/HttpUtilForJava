@@ -12,7 +12,7 @@ public class MyLog {
 
     private static Logger init() {
         Logger logger =  Logger.getLogger(MyLog.class);
-        PropertyConfigurator.configure("E:\\ASprogects\\hss01248\\springMVCDemo\\config\\log4j.properties");
+        PropertyConfigurator.configure("I:\\dev\\Spark\\lib\\log4j.properties");
         return logger;
     }
 
@@ -26,6 +26,9 @@ public class MyLog {
     }
     public static void i(Object obj){
         logger.info(obj);
+    }
+    public static void json(Object obj){
+        logger.info(MyJson.toJsonStr(obj));
     }
 
 }

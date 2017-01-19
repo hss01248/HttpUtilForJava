@@ -20,10 +20,21 @@ import java.util.*;
  */
 public class Tool {
 
-    public static boolean writeResponseBodyToDisk(ResponseBody body, String path) {
+
+
+
+
+
+
+
+
+
+
+
+    public static boolean writeResponseBodyToDisk(ResponseBody body, ConfigInfo info) {
         try {
             // todo change the file location/name according to your needs
-            File futureStudioIconFile = new File(path);
+            File futureStudioIconFile = new File(info.filePath);
             InputStream inputStream = null;
             OutputStream outputStream = null;
             try {
@@ -32,6 +43,8 @@ public class Tool {
                 long fileSizeDownloaded = 0;
                 inputStream = body.byteStream();
                 outputStream = new FileOutputStream(futureStudioIconFile);
+
+                long oldTime = 0L;
                 while (true) {
                     int read = inputStream.read(fileReader);
                     if (read == -1) {
@@ -39,7 +52,19 @@ public class Tool {
                     }
                     outputStream.write(fileReader, 0, read);
                     fileSizeDownloaded += read;
-                    MyLog.d( "file download: " + fileSizeDownloaded + " of " + fileSize);//  这里也可以实现进度监听
+                    //MyLog.d( "file download: " + fileSizeDownloaded + " of " + fileSize);//todo 控制频率
+
+                    long currentTime = System.currentTimeMillis();
+                    if (currentTime - oldTime > NetDefaultConfig.PROGRESS_INTERMEDIATE || fileSizeDownloaded == fileSizeDownloaded) {//每300ms更新一次进度
+                        oldTime = currentTime;
+                        info.listener.onProgressChange(fileSizeDownloaded,fileSize);
+
+                        if(fileSizeDownloaded == fileSize){
+                            info.listener.onSuccess(info.filePath,info.filePath);
+                        }
+                    }
+
+
                 }
 
                 outputStream.flush();

@@ -3,7 +3,9 @@ package com.hss01248.http.config;
 
 import com.hss01248.http.builder.*;
 import com.hss01248.http.interfaces.IClient;
+import com.hss01248.http.util.MyLog;
 import com.hss01248.http.util.Tool;
+import com.hss01248.http.wrapper.MyNetApi2;
 import com.hss01248.http.wrapper.MyNetListener;
 
 import java.io.File;
@@ -70,10 +72,8 @@ public class ConfigInfo<T> {
     public IClient client;
 
     public ConfigInfo<T> start(){
-        /*if(client == null){
-            client = MyNetApi2.adapter;
-        }
-        client.start(this);*/
+        client = MyNetApi2.getClient();
+
         validata();
         client.start(this);
 
@@ -86,12 +86,19 @@ public class ConfigInfo<T> {
      * 参数逻辑校验
      */
     private void validata() {
-        String url = Tool.appendUrl(this.url, false);//todo 自动拼接url功能
+        String url = Tool.appendUrl(this.url, true);//todo 自动拼接url功能
         this.url = url;
         this.listener.url = url;
         this.listener.configInfo = this;
 
         //todo 自己实现缓存或者利用okhttp的缓存功能
+
+        //打印调试
+        MyLog.json(url);
+        MyLog.e("headers-----------------------------------");
+        MyLog.json(headers);
+        MyLog.e("params-----------------------------------");
+        MyLog.json(params);
     }
 
 

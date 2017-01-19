@@ -2,10 +2,7 @@ package com.hss01248.http.wrapper;
 
 
 import com.hss01248.http.config.ConfigInfo;
-import com.hss01248.http.okhttp.progress.ProgressEvent;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import com.hss01248.http.util.MyLog;
 
 import java.util.List;
 
@@ -91,7 +88,9 @@ public abstract class MyNetListener<T>  {
     /**
      * 都是B作为单位
      */
-    public void onProgressChange(long fileSize, long downloadedSize) {}
+    public void onProgressChange(long downloadedBytes, long totalBytes) {
+        MyLog.e("downloadedBytes:"+downloadedBytes+"--totalBytes:"+totalBytes);
+    }
 
     public void onFinish(){}
 
@@ -109,7 +108,7 @@ public abstract class MyNetListener<T>  {
     /**
      * 只需要在retrofit下载时调用
      */
-    public void registEventBus(){
+    /*public void registEventBus(){
         EventBus.getDefault().register(this);
     }
 
@@ -138,7 +137,7 @@ public abstract class MyNetListener<T>  {
                 onFinish();
             }
         }
-    }
+    }*/
 
 
 }

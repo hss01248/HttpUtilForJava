@@ -3,9 +3,12 @@ package com.hss01248.http.builder;
 
 import com.hss01248.http.config.ConfigInfo;
 import com.hss01248.http.config.NetDefaultConfig;
+import com.hss01248.http.util.UrlUtil;
+import com.hss01248.http.util.TextUtils;
 import com.hss01248.http.wrapper.MyNetListener;
 
 import java.io.File;
+import java.util.UUID;
 
 /**
  * Created by Administrator on 2017/1/16 0016.
@@ -87,15 +90,15 @@ public class DownloadBuilder <T> extends ProgressBaseBuilder{
      * @return
      */
     private String getDefaultSavedPath() {
-       /* String fileName =  URLUtil.guessFileName(url,"","");
+        String fileName =  UrlUtil.guessFileName(url);
         if(TextUtils.isEmpty(fileName)){
             fileName = UUID.randomUUID().toString();
         }
-       File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"retrofit");
+       File dir = new File("c:\\download\\","retrofit");
         if(!dir.exists()){
             dir.mkdirs();
-        }*/
-        File file = new File("c:\\download\\1.jpg");//todo 待补全
+        }
+        File file = new File(dir,fileName);
        /* if(file.exists()){
             file.delete();
         }else {

@@ -19,7 +19,7 @@ public class NetDefaultConfig {
 
     public static  String TOKEN = "session_id";//todo
 
-    public static long PROGRESS_INTERMEDIATE = 100;//进度条更新间隔,默认100ms
+    public static long PROGRESS_INTERMEDIATE = 300;//进度条更新间隔,默认300ms
 
     public static String USER_AGENT = "";
 

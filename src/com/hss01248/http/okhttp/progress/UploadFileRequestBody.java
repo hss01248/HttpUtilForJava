@@ -1,11 +1,11 @@
 package com.hss01248.http.okhttp.progress;
 
 
+import com.hss01248.http.config.ConfigInfo;
 import com.hss01248.http.config.NetDefaultConfig;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okio.*;
-import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,11 +16,14 @@ import java.io.IOException;
 public class UploadFileRequestBody extends RequestBody {
     private RequestBody mRequestBody;
     private BufferedSink bufferedSink;
-    private String url;
-    public UploadFileRequestBody(File file,String mimeType,String url) {
+    //private String url;
+    private ConfigInfo info;
+
+    public UploadFileRequestBody(File file,String mimeType,ConfigInfo info) {
        // this.mRequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         this.mRequestBody = RequestBody.create(MediaType.parse(mimeType), file);
-        this.url = url;
+        //this.url = info.url;
+        this.info = info;
     }
 
     @Override
@@ -66,7 +69,8 @@ public class UploadFileRequestBody extends RequestBody {
                 long currentTime = System.currentTimeMillis();
                 if (currentTime - oldTime > NetDefaultConfig.PROGRESS_INTERMEDIATE || bytesWritten == contentLength){//每300ms更新一次进度
                     oldTime = currentTime;
-                    EventBus.getDefault().post(new ProgressEvent(contentLength,bytesWritten,bytesWritten == contentLength,url));
+                    //EventBus.getDefault().post(new ProgressEvent(contentLength,bytesWritten,bytesWritten == contentLength,url));
+                    info.listener.onProgressChange(bytesWritten,contentLength);
                 }
             }
         };

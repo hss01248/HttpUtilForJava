@@ -17,21 +17,35 @@ import java.util.concurrent.TimeUnit;
  * Created by Administrator on 2017/1/19 0019.
  */
 public class OkClient extends IClient {
-    OkHttpClient client;
+   private static OkHttpClient client;
 
-    private void buildHttpClient(){
-        this.client = new OkHttpClient.Builder()
-                .addInterceptor(new Interceptor() {
-                    public Response intercept(Chain chain) throws IOException {
-                        Request request = chain.request();
-                        Response response = chain.proceed(request);
-                        return response;
-                    }
-                })
-                .connectTimeout(6000, TimeUnit.MILLISECONDS)
-                .readTimeout(0,TimeUnit.MILLISECONDS)
-                .writeTimeout(0, TimeUnit.MILLISECONDS)
-                .build();
+    private static OkClient okClient;
+
+   private OkClient(){
+
+   }
+
+    public static OkClient getInstance(){
+
+        if(okClient ==null){
+            okClient = new OkClient();
+            OkClient.client = new OkHttpClient.Builder()
+                    .addInterceptor(new Interceptor() {
+                        public Response intercept(Chain chain) throws IOException {
+                            Request request = chain.request();
+                            Response response = chain.proceed(request);
+                            return response;
+                        }
+                    })
+                    .connectTimeout(6000, TimeUnit.MILLISECONDS)
+                    .readTimeout(0,TimeUnit.MILLISECONDS)
+                    .writeTimeout(0, TimeUnit.MILLISECONDS)
+                    .build();
+
+        }
+
+        return okClient;
+
     }
 
 
@@ -63,10 +77,10 @@ public class OkClient extends IClient {
         String url = Tool.generateUrlOfGET(info);
         builder.url(url);
         addHeaders(builder,info.headers);
-        info.listener.registEventBus();
-        handleResoponse(info, builder, new ISuccessResponse() {
+        //info.listener.registEventBus();
+        requestAndHandleResoponse(info, builder, new ISuccessResponse() {
             public void handleSuccess(Call call, Response response) throws IOException{
-                Tool.writeResponseBodyToDisk(response.body(),info.filePath);
+                Tool.writeResponseBodyToDisk(response.body(),info);
             }
         });
 
@@ -77,11 +91,10 @@ public class OkClient extends IClient {
         Request.Builder builder = new Request.Builder();
         builder.url(info.url);
         addHeaders(builder,info.headers);
-        info.listener.registEventBus();
+        //info.listener.registEventBus();
         addUploadBody(builder,info);
 
-        info.listener.registEventBus();
-        handleResoponse(info, builder, new ISuccessResponse() {
+               requestAndHandleResoponse(info, builder, new ISuccessResponse() {
             public void handleSuccess(Call call, Response response) throws IOException{
                 String str = response.body().string();
                 info.listener.onSuccess(str,str);
@@ -97,6 +110,7 @@ public class OkClient extends IClient {
     private void addHeaders(Request.Builder builder, Map<String, String> headers) {
         Headers.Builder headBuilder = new Headers.Builder();
         for(Map.Entry<String,String> header   : headers.entrySet()){
+
             headBuilder.set(header.getKey(),header.getValue());
         }
         builder.headers(headBuilder.build());
@@ -147,7 +161,7 @@ public class OkClient extends IClient {
                     String value = entry.getValue();
                     File file = new File(value);
 
-                    UploadFileRequestBody fileRequestBody = new UploadFileRequestBody(file, Tool.getMimeType(value),configInfo.url);
+                    UploadFileRequestBody fileRequestBody = new UploadFileRequestBody(file, Tool.getMimeType(value),configInfo);
                     builder.addFormDataPart(key,file.getName(),fileRequestBody);
                 }
             }
@@ -159,14 +173,14 @@ public class OkClient extends IClient {
 
     private <E> void handleStringRequest(final ConfigInfo<E> info, Request.Builder builder) {
 
-        handleResoponse(info, builder, new ISuccessResponse() {
+        requestAndHandleResoponse(info, builder, new ISuccessResponse() {
             public void handleSuccess(Call call, Response response) throws IOException{
                 Tool.parseStringByType(response.body().string(),info);
             }
         });
     }
 
-    private <E> void handleResoponse(final ConfigInfo<E> info, Request.Builder builder, final ISuccessResponse successResponse) {
+    private <E> void requestAndHandleResoponse(final ConfigInfo<E> info, Request.Builder builder, final ISuccessResponse successResponse) {
         final Request request = builder.build();
         Call call = client.newCall(request);
         info.request = call;

@@ -3,6 +3,7 @@ package com.hss01248.http.builder;
 
 import com.hss01248.http.config.ConfigInfo;
 import com.hss01248.http.config.NetDefaultConfig;
+import com.hss01248.http.util.TextUtils;
 import com.hss01248.http.util.Tool;
 import com.hss01248.http.wrapper.MyNetListener;
 
@@ -23,7 +24,10 @@ public class BaseNetBuilder<T> {
 
     public BaseNetBuilder(){
         headers = new HashMap<String,String>();
-        headers.put("User-Agent", NetDefaultConfig.USER_AGENT);
+        if(TextUtils.isNotEmpty(NetDefaultConfig.USER_AGENT)){
+            headers.put("User-Agent", NetDefaultConfig.USER_AGENT);
+        }
+
         headers.put("Accept","*/*");
         headers.put("Connection","Keep-Alive");
 
@@ -34,7 +38,10 @@ public class BaseNetBuilder<T> {
 
     //todo 以下是http请求基本组成
     public BaseNetBuilder<T> addHeader(String key,String value){
-        params.put(key,value);
+        if(key!=null && value!=null){
+            headers.put(key,value);
+        }
+
         return this;
     }
 
@@ -43,7 +50,10 @@ public class BaseNetBuilder<T> {
      * 在此处完成urlencode功能
     * */
     public BaseNetBuilder<T> addParams(String key,String value){
-        headers.put(Tool.urlEncode(key),Tool.urlEncode(value));
+
+        if(key!=null && value!=null){
+            params.put(Tool.urlEncode(key),Tool.urlEncode(value));
+        }
         return this;
     }
 
