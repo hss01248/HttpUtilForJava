@@ -29,18 +29,26 @@ public class JsonRequestBuilder<T> extends StringRequestBuilder{
         return this;
     }
 
+
+
     @Override
-    protected ConfigInfo execute() {
-        //做一些参数合理性校验
+    protected boolean validate() {
+        if(!super.validate()){
+            return false;
+        }
         if(clazz ==null){
             throw new RuntimeException("没有设置clazz参数");
         }
-
-
-        return new ConfigInfo(this);
+        return true;
     }
 
     //todo 以下的都是复写基类的方法,强转成子类
+
+
+    @Override
+    public JsonRequestBuilder paramsStr(String paramsStr) {
+        return (JsonRequestBuilder) super.paramsStr(paramsStr);
+    }
 
     @Override
     public JsonRequestBuilder url(String url) {

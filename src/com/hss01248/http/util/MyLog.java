@@ -12,7 +12,8 @@ public class MyLog {
 
     private static Logger init() {
         Logger logger =  Logger.getLogger(MyLog.class);
-        PropertyConfigurator.configure("I:\\dev\\Spark\\lib\\log4j.properties");
+       // PropertyConfigurator.configure("I:\\dev\\Spark\\lib\\log4j.properties");
+        PropertyConfigurator.configure("E:\\ASprogects\\javaee\\spring\\demo2\\config\\log4j.properties");
         return logger;
     }
 

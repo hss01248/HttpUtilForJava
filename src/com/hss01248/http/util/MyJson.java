@@ -4,6 +4,7 @@ package com.hss01248.http.util;
 import com.alibaba.fastjson.JSON;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/4/24.
@@ -13,6 +14,10 @@ public class MyJson {
     public static String toJsonStr(Object obj){
        // return new Gson().toJson(obj);
          return JSON.toJSONString(obj);
+    }
+
+    public static  Map jsonToMap(String str){
+      return   parseObject(str,Map.class);
     }
 
 

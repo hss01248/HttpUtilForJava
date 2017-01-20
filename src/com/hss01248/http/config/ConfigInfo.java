@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class ConfigInfo<T> {
 
-    public ConfigInfo(){
+    private ConfigInfo(){
 
     }
 
@@ -24,10 +24,10 @@ public class ConfigInfo<T> {
 
 
     //核心参数
-    public int method = NetDefaultConfig.Method.GET;
+    public int method ;
     public String url;
     public Map params ;
-
+    public String paramsStr;
 
 
     public boolean paramsAsJson ;
@@ -99,6 +99,12 @@ public class ConfigInfo<T> {
         MyLog.json(headers);
         MyLog.e("params-----------------------------------");
         MyLog.json(params);
+        MyLog.json(paramsStr);
+
+        //todo 看上传文件在不在
+
+
+        //todo 看下载路径在不在
     }
 
 
@@ -298,6 +304,7 @@ public class ConfigInfo<T> {
         this.retryCount = builder.retryCount;
         this.timeout = builder.timeout;
         this.type = builder.type;
+        this.paramsStr = builder.paramsStr;
 
 
     }

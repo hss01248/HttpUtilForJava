@@ -75,14 +75,23 @@ public class DownloadBuilder <T> extends ProgressBaseBuilder{
 
 
     @Override
-    protected ConfigInfo execute() {
-        method = NetDefaultConfig.Method.GET;
-        this.type = ConfigInfo.TYPE_DOWNLOAD;
-        if(savedPath ==null || savedPath =="" ){
-            savedPath = getDefaultSavedPath();
+    protected boolean validate() {
+        if(!super.validate()){
+            return false;
         }
 
-        return new ConfigInfo(this);
+            method = NetDefaultConfig.Method.GET;
+            this.type = ConfigInfo.TYPE_DOWNLOAD;
+            if(savedPath ==null || savedPath =="" ){
+                savedPath = getDefaultSavedPath();
+            }
+            if(!new File(savedPath).exists()){
+                listener.onError("保存路径不存在");
+                return false;
+            }else {
+                return true;
+            }
+
     }
 
     /**
@@ -113,6 +122,12 @@ public class DownloadBuilder <T> extends ProgressBaseBuilder{
     }
 
     //todo 以下的都是复写基类的方法,强转成子类
+
+
+    @Override
+    public DownloadBuilder paramsStr(String paramsStr) {
+        return (DownloadBuilder) super.paramsStr(paramsStr);
+    }
 
     @Override
     public DownloadBuilder url(String url) {

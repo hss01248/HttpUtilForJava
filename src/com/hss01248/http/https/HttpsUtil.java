@@ -3,7 +3,8 @@ package com.hss01248.http.https;
 import okhttp3.OkHttpClient;
 
 import javax.net.ssl.*;
-
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
@@ -12,6 +13,7 @@ import java.security.SecureRandom;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +21,21 @@ import java.util.List;
  */
 
 public class HttpsUtil {
+
+   private static List<String> certificateFiles;
+
+    public static void addCrtificateFile(String filePath){
+        if(certificateFiles==null){
+            certificateFiles=new ArrayList<>();
+        }
+        certificateFiles.add(filePath);
+    }
+
+    public static void setHttps(OkHttpClient.Builder builder){
+        if(certificateFiles!= null && certificateFiles.size()>0){
+            builder.sslSocketFactory(getSSLSocketFactory());
+        }
+    }
 
 
 
@@ -28,9 +45,9 @@ public class HttpsUtil {
 
      * @return
      */
-    public static SSLSocketFactory getSSLSocketFactory(InputStream certificate) {
+    public static SSLSocketFactory getSSLSocketFactory() {
 
-
+        List<String> certificateFiles = HttpsUtil.certificateFiles;
 
         CertificateFactory certificateFactory;
         try {
@@ -38,14 +55,18 @@ public class HttpsUtil {
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
             keyStore.load(null, null);
 
-            //for (int i = 0; i < certificates.size(); i++) {
-                //InputStream certificate = context.getResources().openRawResource(certificates.get(i));
+            for (int i = 0; i < certificateFiles.size(); i++) {
+                File file = new File(certificateFiles.get(i));
+                if(!file.exists()){
+                    throw new RuntimeException("证书文件不存在"+certificateFiles.get(i));
+                }
+                InputStream certificate = new FileInputStream(file);
                 keyStore.setCertificateEntry(0+"", certificateFactory.generateCertificate(certificate));
 
                 if (certificate != null) {
                     certificate.close();
                 }
-           // }
+            }
             SSLContext sslContext = SSLContext.getInstance("TLS");
             TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
             trustManagerFactory.init(keyStore);

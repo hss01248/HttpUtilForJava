@@ -3,6 +3,7 @@ package com.hss01248.http.builder;
 
 import com.hss01248.http.config.ConfigInfo;
 import com.hss01248.http.config.NetDefaultConfig;
+import com.hss01248.http.util.CollectionUtil;
 import com.hss01248.http.util.TextUtils;
 import com.hss01248.http.util.Tool;
 import com.hss01248.http.wrapper.MyNetListener;
@@ -15,8 +16,21 @@ import java.util.Map;
  */
 public class BaseNetBuilder<T> {
 
-    public Map<String,String> params = new HashMap<String,String>();
-    public Map<String,String> headers = new HashMap<String,String>();
+
+    /**
+     * 以已经成型的参数形式来设置
+     * @param paramsStr
+     */
+    public BaseNetBuilder paramsStr(String paramsStr) {
+        this.paramsStr = paramsStr;
+        return this;
+    }
+
+
+
+    public String paramsStr;
+    public Map<String,String> params ;
+    public Map<String,String> headers;
     public MyNetListener<T> listener;
     public String url;
     public int method ;
@@ -24,6 +38,7 @@ public class BaseNetBuilder<T> {
 
     public BaseNetBuilder(){
         headers = new HashMap<String,String>();
+        params = new HashMap<String,String>();
         if(TextUtils.isNotEmpty(NetDefaultConfig.USER_AGENT)){
             headers.put("User-Agent", NetDefaultConfig.USER_AGENT);
         }
@@ -82,11 +97,27 @@ public class BaseNetBuilder<T> {
     }
 
     protected ConfigInfo<T> execute(){
-        return new ConfigInfo<T>(this);
+        if(validate()){
+            return new ConfigInfo<T>(this);
+        }else {
+            return null;
+        }
     }
 
+    protected boolean validate() {
 
-
+        CollectionUtil.filterMap(headers, new CollectionUtil.MapFilter<String, String>() {
+            public boolean isRemain(Map.Entry<String, String> entry) {
+                return entry.getValue() != null;
+            }
+        });
+        CollectionUtil.filterMap(params, new CollectionUtil.MapFilter<String, String>() {
+            public boolean isRemain(Map.Entry<String, String> entry) {
+                return entry.getValue() != null;
+            }
+        });
+        return true;
+    }
 
 
     //todo 以下是缓存控制策略

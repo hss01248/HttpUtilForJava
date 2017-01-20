@@ -92,20 +92,16 @@ public class StandardJsonRequestBuilder <T> extends JsonRequestBuilder{
     }
 
 
-    @Override
-    protected ConfigInfo execute() {
 
-        //做一些参数合理性校验
-        if(clazz ==null){
-            throw new RuntimeException("没有设置clazz参数");
-        }
-
-
-        return new ConfigInfo(this);
-    }
 
 
     //todo 以下的都是复写基类的方法,强转成子类
+
+
+    @Override
+    public StandardJsonRequestBuilder paramsStr(String paramsStr) {
+        return (StandardJsonRequestBuilder) super.paramsStr(paramsStr);
+    }
 
     @Override
     public StandardJsonRequestBuilder url(String url) {

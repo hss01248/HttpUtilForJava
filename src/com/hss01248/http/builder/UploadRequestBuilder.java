@@ -3,8 +3,10 @@ package com.hss01248.http.builder;
 
 import com.hss01248.http.config.ConfigInfo;
 import com.hss01248.http.config.NetDefaultConfig;
+import com.hss01248.http.util.CollectionUtil;
 import com.hss01248.http.wrapper.MyNetListener;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,22 +20,44 @@ public class UploadRequestBuilder <T> extends ProgressBaseBuilder{
 
     public UploadRequestBuilder(){
         type = ConfigInfo.TYPE_UPLOAD_WITH_PROGRESS;
+        files = new HashMap<String,String>();
     }
 
 
     public UploadRequestBuilder<T> addFile(String desc,String filePath){
-        if(files == null){
-            files = new HashMap<String,String>();
-        }
         files.put(desc,filePath);
         return this;
     }
 
+
+
     @Override
-    protected ConfigInfo execute() {
+    protected boolean validate() {
+        if(!super.validate()){
+            return false;
+        }
         method = NetDefaultConfig.Method.POST;
         headers.put("Content-Type","multipart/form-data");
-        return new ConfigInfo(this);
+
+        /*CollectionUtil.filter(files.entrySet(), new CollectionUtil.Filter<Map.Entry<String,String>>() {
+            @Override
+            public boolean remain(Map.Entry<String,String> item) {
+                return false;
+            }
+        });*/
+
+        //不应该过滤,而应该直接onerror
+        CollectionUtil.filterMap(files, new CollectionUtil.MapFilter<String, String>() {
+            public boolean isRemain(Map.Entry<String, String> entry) {
+                return new File(entry.getValue()).exists();
+            }
+        });
+
+        if(files.size()==0){
+            listener.onError("没有添加上传文件");
+            return false;
+        }
+        return true;
     }
 
     //todo 以下的都是复写基类的方法,强转成子类

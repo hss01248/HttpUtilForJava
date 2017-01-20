@@ -23,14 +23,15 @@ public class StringRequestBuilder <T> extends BaseNetBuilder{
         return this;
     }
 
-    @Override
-    protected ConfigInfo execute() {
-        //做一些参数合理性校验
 
-        return new ConfigInfo(this);
-    }
 
 //todo 以下的都是复写基类的方法,强转成子类
+
+
+    @Override
+    public StringRequestBuilder paramsStr(String paramsStr) {
+       return (StringRequestBuilder) super.paramsStr(paramsStr);
+    }
 
     @Override
     public StringRequestBuilder url(String url) {

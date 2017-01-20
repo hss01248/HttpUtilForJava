@@ -6,13 +6,13 @@ package com.hss01248.http.builder;
 public interface IBuilder {
 
     //TODO 新api,最简化,其他个性化设置由
-    public <E> StringRequestBuilder<E> buildStringRequest(String url);
+    public <E> StringRequestBuilder<E> requestString(String url);
 
-    public <E> JsonRequestBuilder<E> buildJsonRequest(String url, Class<E> clazz);
+    public <E> JsonRequestBuilder<E> requestJson(String url, Class<E> clazz);
 
-    public <E> StandardJsonRequestBuilder<E> buildStandardJsonRequest(String url, Class<E> clazz);
+    public <E> StandardJsonRequestBuilder<E> reqeustStandardJson(String url, Class<E> clazz);
 
-    public<E> DownloadBuilder<E> buildDownloadRequest(String url);
+    public<E> DownloadBuilder<E> download(String url);
 
-    <E> UploadRequestBuilder<E> buildUpLoadRequest(String url, String fileDesc, String filePath);
+    <E> UploadRequestBuilder<E> upload(String url, String fileDesc, String filePath);
 }

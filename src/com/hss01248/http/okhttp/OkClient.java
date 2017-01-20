@@ -1,9 +1,12 @@
 package com.hss01248.http.okhttp;
 
 import com.hss01248.http.config.ConfigInfo;
+import com.hss01248.http.https.HttpsUtil;
 import com.hss01248.http.interfaces.IClient;
+import com.hss01248.http.okhttp.cookie.CookieManger;
 import com.hss01248.http.okhttp.progress.UploadFileRequestBody;
 import com.hss01248.http.util.MyJson;
+import com.hss01248.http.util.TextUtils;
 import com.hss01248.http.util.Tool;
 import okhttp3.*;
 
@@ -17,36 +20,46 @@ import java.util.concurrent.TimeUnit;
  * Created by Administrator on 2017/1/19 0019.
  */
 public class OkClient extends IClient {
-   private static OkHttpClient client;
-
     private static OkClient okClient;
+   private static OkHttpClient client;
+    private static OkHttpClient allCerPassClient;
+
 
    private OkClient(){
 
    }
 
-    public static OkClient getInstance(){
+   private OkHttpClient getAllCerPassClient(){
+       if(allCerPassClient ==null){
+           OkHttpClient.Builder builder = new OkHttpClient.Builder();
+           HttpsUtil.setAllCerPass(builder);
+           OkClient.allCerPassClient = builder
+                   .connectTimeout(6000, TimeUnit.MILLISECONDS)
+                   .readTimeout(0,TimeUnit.MILLISECONDS)
+                   .writeTimeout(0, TimeUnit.MILLISECONDS)
+                   .cookieJar(new CookieManger())
+                   .build();
+       }
+       return allCerPassClient;
+   }
 
+    public static OkClient getInstance(){
         if(okClient ==null){
             okClient = new OkClient();
-            OkClient.client = new OkHttpClient.Builder()
-                    .addInterceptor(new Interceptor() {
-                        public Response intercept(Chain chain) throws IOException {
-                            Request request = chain.request();
-                            Response response = chain.proceed(request);
-                            return response;
-                        }
-                    })
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            HttpsUtil.setHttps(builder);
+            OkClient.client = builder
                     .connectTimeout(6000, TimeUnit.MILLISECONDS)
                     .readTimeout(0,TimeUnit.MILLISECONDS)
                     .writeTimeout(0, TimeUnit.MILLISECONDS)
+                    .cookieJar(new CookieManger())
                     .build();
 
         }
-
         return okClient;
-
     }
+
+
 
 
 
@@ -66,7 +79,7 @@ public class OkClient extends IClient {
         Request.Builder builder = new Request.Builder();
         builder.url(info.url);
         addHeaders(builder,info.headers);
-        addPostBody(builder,info.params,info.paramsAsJson);
+        addPostBody(builder,info);
 
         handleStringRequest(info, builder);
         return info;
@@ -124,13 +137,19 @@ public class OkClient extends IClient {
         return builder.build();
     }
 
-    private void addPostBody(Request.Builder builder, Map params, boolean paramsAsJson) {
+    private void addPostBody(Request.Builder builder, ConfigInfo info) {
         RequestBody body = null;
-        if(paramsAsJson){
-            String jsonStr = MyJson.toJsonStr(params);
+        if(TextUtils.isNotEmpty(info.paramsStr)){
+            body = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), info.paramsStr);
+            builder.post(body);
+            return;
+        }
+
+        if(info.paramsAsJson){
+            String jsonStr = MyJson.toJsonStr(info.params);
             body = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), jsonStr);
         }else {
-            body=   getFormBody(params);
+            body=   getFormBody(info.params);
         }
         builder.post(body);
     }
@@ -154,15 +173,17 @@ public class OkClient extends IClient {
         if (configInfo.files != null && configInfo.files.size() >0){
             Map<String,String> files = configInfo.files;
             int count = files.size();
+            int index=0;
+
             if (count>0){
                 Set<Map.Entry<String,String>> set = files.entrySet();
                 for (Map.Entry<String,String> entry : set){
                     String key = entry.getKey();
                     String value = entry.getValue();
                     File file = new File(value);
-
-                    UploadFileRequestBody fileRequestBody = new UploadFileRequestBody(file, Tool.getMimeType(value),configInfo);
+                    UploadFileRequestBody fileRequestBody = new UploadFileRequestBody(file, Tool.getMimeType(value),configInfo,index);
                     builder.addFormDataPart(key,file.getName(),fileRequestBody);
+                    index++;
                 }
             }
         }
@@ -182,7 +203,16 @@ public class OkClient extends IClient {
 
     private <E> void requestAndHandleResoponse(final ConfigInfo<E> info, Request.Builder builder, final ISuccessResponse successResponse) {
         final Request request = builder.build();
-        Call call = client.newCall(request);
+        OkHttpClient theClient;
+        if(info.isIgnoreCer()){
+            if(allCerPassClient==null){
+                allCerPassClient = getAllCerPassClient();
+            }
+            theClient = allCerPassClient;
+        }else {
+            theClient = client;
+        }
+        Call call = theClient.newCall(request);
         info.request = call;
         call.enqueue(new Callback() {
             public void onFailure(Call call, IOException e) {

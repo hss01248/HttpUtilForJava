@@ -1,2 +1,4 @@
 # HttpUtil
-nice api  http request in pure java, a wapper of okhttp
+nice api for http request in pure java, a wapper of okhttp.
+
+

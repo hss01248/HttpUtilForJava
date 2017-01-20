@@ -6,12 +6,11 @@ import com.hss01248.http.config.BaseNetBean;
 import com.hss01248.http.config.ConfigInfo;
 import com.hss01248.http.config.NetDefaultConfig;
 import com.hss01248.http.wrapper.MyNetListener;
+import eu.medsea.mimeutil.MimeUtil;
 import okhttp3.ResponseBody;
 import org.json.JSONObject;
 
 import java.io.*;
-import java.net.FileNameMap;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.*;
 
@@ -100,6 +99,9 @@ public class Tool {
     }
 
     public static String generateUrlOfGET(ConfigInfo info){
+        if(TextUtils.isNotEmpty(info.paramsStr)){
+            return info.url+ "?"+info.paramsStr;
+        }
         String parms = Tool.getKeyValueStr(info.params);
         String url = info.url;
         if(TextUtils.isNotEmpty(parms)){
@@ -509,9 +511,34 @@ public class Tool {
 
     public static String getMimeType(String fileUrl){
 
-        FileNameMap fileNameMap = URLConnection.getFileNameMap();
+       /* FileNameMap fileNameMap = URLConnection.getFileNameMap();
         String type = fileNameMap.getContentTypeFor(fileUrl);
+        return type;*/
+
+       String type = "text/*";
+
+        try {
+            /*Magic parser = new Magic() ;
+            // getMagicMatch accepts Files or byte[],
+            // which is nice if you want to test streams
+            MagicMatch match = null;
+            match = parser.getMagicMatch(new File(fileUrl),true);
+            System.out.println(match.getMimeType()) ;
+            String str = match.getMimeType();*/
+
+            MimeUtil.registerMimeDetector("eu.medsea.mimeutil.detector.MagicMimeMimeDetector");
+            File f = new File (fileUrl);
+            Collection<?> mimeTypes = MimeUtil.getMimeTypes(f);
+            System.out.println("mimeTypes:"+mimeTypes);
+            if(!mimeTypes.isEmpty()){
+                type = mimeTypes.toString();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return type;
+
 
 
 

@@ -73,29 +73,29 @@ public class MyNetApi2 {
 
 
 
-    public  static <E> StringRequestBuilder<E> buildStringRequest(String url) {
+    public  static <E> StringRequestBuilder<E> requestString(String url) {
         return new StringRequestBuilder<E>().url(url);
     }
 
 
-    public static <E> JsonRequestBuilder<E> buildJsonRequest(String url, Class<E> clazz) {
+    public static <E> JsonRequestBuilder<E> requestJson(String url, Class<E> clazz) {
         JsonRequestBuilder builder = new JsonRequestBuilder();
         builder.url(url).setJsonClazz(clazz);
         return builder;
     }
 
 
-    public static <E> StandardJsonRequestBuilder<E> buildStandardJsonRequest(String url, Class<E> clazz) {
+    public static <E> StandardJsonRequestBuilder<E> reqeustStandardJson(String url, Class<E> clazz) {
         return new StandardJsonRequestBuilder<E>().url(url).setJsonClazz(clazz);
     }
 
 
-    public static <E> DownloadBuilder<E> buildDownloadRequest(String url) {
+    public static <E> DownloadBuilder<E> download(String url) {
         return new DownloadBuilder<E>().url(url);
     }
 
 
-    public static <E> UploadRequestBuilder<E> buildUpLoadRequest(String url, String fileDesc, String filePath) {
+    public static <E> UploadRequestBuilder<E> upload(String url, String fileDesc, String filePath) {
         return new UploadRequestBuilder<E>().url(url).addFile(fileDesc,filePath);
     }
 }

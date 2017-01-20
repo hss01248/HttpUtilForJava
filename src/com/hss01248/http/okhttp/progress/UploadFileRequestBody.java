@@ -18,12 +18,14 @@ public class UploadFileRequestBody extends RequestBody {
     private BufferedSink bufferedSink;
     //private String url;
     private ConfigInfo info;
+    private int index;
 
-    public UploadFileRequestBody(File file,String mimeType,ConfigInfo info) {
+    public UploadFileRequestBody(File file, String mimeType, ConfigInfo info, int index) {
        // this.mRequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         this.mRequestBody = RequestBody.create(MediaType.parse(mimeType), file);
         //this.url = info.url;
         this.info = info;
+        this.index = index;
     }
 
     @Override
@@ -70,7 +72,7 @@ public class UploadFileRequestBody extends RequestBody {
                 if (currentTime - oldTime > NetDefaultConfig.PROGRESS_INTERMEDIATE || bytesWritten == contentLength){//每300ms更新一次进度
                     oldTime = currentTime;
                     //EventBus.getDefault().post(new ProgressEvent(contentLength,bytesWritten,bytesWritten == contentLength,url));
-                    info.listener.onProgressChange(bytesWritten,contentLength);
+                    info.listener.onFilesUploadProgress(bytesWritten,contentLength,index,info.files.size());
                 }
             }
         };

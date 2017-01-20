@@ -88,8 +88,20 @@ public abstract class MyNetListener<T>  {
     /**
      * 都是B作为单位
      */
-    public void onProgressChange(long downloadedBytes, long totalBytes) {
-        MyLog.e("downloadedBytes:"+downloadedBytes+"--totalBytes:"+totalBytes);
+    public void onProgressChange(long transPortedBytes, long totalBytes) {
+        //MyLog.e("transPortedBytes:"+transPortedBytes+"--totalBytes:"+totalBytes);
+    }
+
+    /**
+     *
+     * @param transPortedBytes
+     * @param totalBytes
+     * @param fileIndex
+     * @param filesCount 总的上传文件数量
+     */
+    public void onFilesUploadProgress(long transPortedBytes, long totalBytes,int fileIndex,int filesCount) {
+        MyLog.e("FilesUploadprogress:"+transPortedBytes+"--totalBytes:"+totalBytes+"--fileIndex:"+fileIndex+"-----filecount:"+filesCount);
+        onProgressChange(transPortedBytes,totalBytes);
     }
 
     public void onFinish(){}
