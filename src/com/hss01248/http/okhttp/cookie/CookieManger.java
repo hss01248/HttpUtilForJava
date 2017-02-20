@@ -12,13 +12,13 @@ import java.util.List;
  * Created by Administrator on 2017/1/20 0020.
  */
 public class CookieManger implements CookieJar {
-    private final HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
+    private final HashMap<String, List<Cookie>> cookieStore = new HashMap<String, List<Cookie>>();
 
-    @Override
+
     public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
         cookieStore.put(url.host(), cookies);
     }
-    @Override
+
     public List<Cookie> loadForRequest(HttpUrl url) {
         List<Cookie> cookies = cookieStore.get(url.host());
         return cookies != null ? cookies : new ArrayList<Cookie>();

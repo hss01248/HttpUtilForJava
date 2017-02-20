@@ -4,6 +4,7 @@ import com.hss01248.http.config.ConfigInfo;
 import com.hss01248.http.https.HttpsUtil;
 import com.hss01248.http.interfaces.IClient;
 import com.hss01248.http.okhttp.cookie.CookieManger;
+import com.hss01248.http.okhttp.log.LogInterceptor;
 import com.hss01248.http.okhttp.progress.UploadFileRequestBody;
 import com.hss01248.http.util.MyJson;
 import com.hss01248.http.util.TextUtils;
@@ -12,6 +13,7 @@ import okhttp3.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -38,6 +40,7 @@ public class OkClient extends IClient {
                    .readTimeout(0,TimeUnit.MILLISECONDS)
                    .writeTimeout(0, TimeUnit.MILLISECONDS)
                    .cookieJar(new CookieManger())
+                   .addNetworkInterceptor(new LogInterceptor())
                    .build();
        }
        return allCerPassClient;
@@ -47,12 +50,13 @@ public class OkClient extends IClient {
         if(okClient ==null){
             okClient = new OkClient();
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            HttpsUtil.setHttps(builder);
+            //HttpsUtil.setHttps(builder);
             OkClient.client = builder
                     .connectTimeout(6000, TimeUnit.MILLISECONDS)
                     .readTimeout(0,TimeUnit.MILLISECONDS)
                     .writeTimeout(0, TimeUnit.MILLISECONDS)
                     .cookieJar(new CookieManger())
+                    .addNetworkInterceptor(new LogInterceptor())
                     .build();
 
         }
@@ -196,7 +200,15 @@ public class OkClient extends IClient {
 
         requestAndHandleResoponse(info, builder, new ISuccessResponse() {
             public void handleSuccess(Call call, Response response) throws IOException{
-                Tool.parseStringByType(response.body().string(),info);
+                String type = response.header("Content-Encoding");
+                /*byte[] bytes = response.body().bytes();
+                String str = new String(bytes,"gb2312");*/
+                String str =  response.body().source().readString(Charset.forName("gb2312"));
+
+               /* if("gzip".equals(type)){
+                    str = GZipUtil.uncompress(str);
+                }*/
+                Tool.parseStringByType(str,info);
             }
         });
     }
@@ -214,6 +226,21 @@ public class OkClient extends IClient {
         }
         Call call = theClient.newCall(request);
         info.request = call;
+        if(info.isSync){
+            try {
+              Response response =   call.execute();
+                if(response.isSuccessful()){
+                    successResponse.handleSuccess(call,response);
+                }else {
+                    info.listener.onCodeError("http错误码:"+response.code(),response.message(),response.code());
+                }
+
+            } catch (IOException e) {
+                info.listener.onError(e.getMessage());
+                e.printStackTrace();
+            }
+            return;
+        }
         call.enqueue(new Callback() {
             public void onFailure(Call call, IOException e) {
                 info.listener.onError(e.getMessage());

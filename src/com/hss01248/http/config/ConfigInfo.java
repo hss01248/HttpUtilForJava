@@ -66,6 +66,9 @@ public class ConfigInfo<T> {
 // 这个属性没有全局配置,也不建议全局配置. 如果是自签名,放置证书到raw下,并在初始化前addCer方法,即可全局使用https
     private boolean ignoreCer ;
 
+    public boolean isSync;
+    public String responseCharset;
+
 
 
     //请求的客户端对象
@@ -305,6 +308,8 @@ public class ConfigInfo<T> {
         this.timeout = builder.timeout;
         this.type = builder.type;
         this.paramsStr = builder.paramsStr;
+        this.isSync = builder.isSync;
+        this.responseCharset = builder.responseCharset;
 
 
     }

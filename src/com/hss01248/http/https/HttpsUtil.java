@@ -26,7 +26,7 @@ public class HttpsUtil {
 
     public static void addCrtificateFile(String filePath){
         if(certificateFiles==null){
-            certificateFiles=new ArrayList<>();
+            certificateFiles=new ArrayList<String>();
         }
         certificateFiles.add(filePath);
     }

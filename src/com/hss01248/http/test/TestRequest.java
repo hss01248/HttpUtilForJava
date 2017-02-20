@@ -1,12 +1,18 @@
 package com.hss01248.http.test;
 
-import com.hss01248.http.https.HttpsUtil;
 import com.hss01248.http.test.bean.*;
 import com.hss01248.http.util.MyJson;
 import com.hss01248.http.util.MyLog;
 import com.hss01248.http.wrapper.MyNetApi2;
 import com.hss01248.http.wrapper.MyNetListener;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,11 +24,66 @@ public class TestRequest {
 
     public static void main(String[] args){
         MyNetApi2.init("http://www.qxinli.com:9001/api/");
-        HttpsUtil.addCrtificateFile("F:\\srca.cer");
+        //HttpsUtil.addCrtificateFile("F:\\srca.cer");
         //testUpload();
 
-        testGetString();
+        //testGetString();
 
+        testCaoliu();
+        //testPostString();
+       // getAsync();
+
+    }
+
+    public static void get(){
+        HttpClient client = new DefaultHttpClient();
+        // 设置代理服务器地址和端口
+        //client.getHostConfiguration().setProxy("proxy_host_addr",proxy_port);
+        // 使用 GET 方法 ，如果服务器需要通过 HTTPS 连接，那只需要将下面 URL 中的 http 换成 https
+        HttpGet method=new HttpGet("http://c6.h0j.org/thread0806.php?fid=16&search=&page=2");
+        method.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) ");
+        //使用POST方法
+        //HttpMethod method = new PostMethod("http://java.sun.com");
+
+        try {
+          HttpResponse response= client.execute(method);
+            //打印服务器返回的状态
+            System.out.println(response.getStatusLine());
+            //打印返回的信息
+           // System.out.println(response.getEntity().);
+            response.getEntity().writeTo(new FileOutputStream(new File("E:\\1.txt")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        //释放连接
+        method.releaseConnection();
+    }
+
+
+
+    private static void testCaoliu(){
+        MyNetApi2.requestString("http://c6.h0j.org/thread0806.php?fid=16&search=&page=2")
+               // .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) ")
+               //.addHeader("Accept-Encoding","gzip, deflate, sdch")
+               // .addHeader("Accept-Language","en")
+                .setTimeout(200000)
+
+                //.addHeader("Accept-Encoding","gzip")
+                .callback(new MyNetListener() {
+                    @Override
+                    public void onSuccess(Object response, String resonseStr) {
+                        MyLog.d(resonseStr);
+                    }
+
+                    @Override
+                    public void onError(String msgCanShow) {
+                        super.onError(msgCanShow);
+                        MyLog.d(msgCanShow);
+                    }
+                })
+                .getAsync();
     }
 
     private static void testparamsStr() {
@@ -60,7 +121,7 @@ public class TestRequest {
                         super.onError(msgCanShow);
                         MyLog.d(msgCanShow);
                     }
-                }).post();
+                }).postAsync();
     }
 
     public static void testGetString(){
@@ -77,8 +138,8 @@ public class TestRequest {
                         MyLog.e(error);
                     }
                 })
-              //  .setIgnoreCer()
-                .get();
+               .setIgnoreCer()
+                .getAsync();
     }
     public static void testPostString(){
         MyNetApi2.requestString("article/getArticleCommentList/v1.json")
@@ -90,7 +151,7 @@ public class TestRequest {
                     public void onSuccess(String response, String resonseStr) {
                         MyLog.e(response);
                     }
-                }).post();
+                }).postAsync();
     }
     public static void testGetJson(){
         MyNetApi2.requestJson("version/latestVersion/v1.json",GetCommonJsonBean.class)
@@ -100,7 +161,7 @@ public class TestRequest {
                         MyLog.json(MyJson.toJsonStr(response));
                     }
                 })
-                .get();
+                .getAsync();
 
     }
     public static void testPostJson(){
@@ -113,7 +174,7 @@ public class TestRequest {
                     public void onSuccess(PostCommonJsonBean response, String resonseStr) {
                         MyLog.json(MyJson.toJsonStr(response));
                     }
-                }).post();
+                }).postAsync();
     }
 
     public static void testGetStandardJson(){
@@ -151,7 +212,7 @@ public class TestRequest {
                         MyLog.e(error);
                     }
                 })
-                .get();
+                .getAsync();
     }
     public static void testPostStandardJson(){
         MyNetApi2.reqeustStandardJson("article/getArticleCommentList/v1.json",PostStandardJsonArray.class)
@@ -171,7 +232,7 @@ public class TestRequest {
                         MyLog.json(MyJson.toJsonStr(response));
                     }
                 })
-                .post();
+                .postAsync();
     }
     public static void testParamsAsJson(){
         MyNetApi2.reqeustStandardJson("http://app.cimc.com:9090/app/appVersion/getLatestVersion",VersionInfo.class)
@@ -198,7 +259,7 @@ public class TestRequest {
                         MyLog.e(msgCanShow);
                     }
                 })
-                .post();
+                .postAsync();
     }
     public static void testDownload(){
         String url = "https://travel.12306.cn/imgs/resources/uploadfiles/images/fed7d5b4-37d3-4f32-bacc-e9b942cb721d_product_W572_H370.jpg";
@@ -223,7 +284,7 @@ public class TestRequest {
                         MyLog.e(msgCanShow);
                     }
                 })
-                .get();
+                .getAsync();
     }
     public static void testUpload(){
         MyNetApi2.upload("http://localhost:8008/spring3/test/upload.action",
@@ -248,6 +309,6 @@ public class TestRequest {
                        // super.onProgressChange(fileSize, downloadedSize);
                         MyLog.e("upload onProgressChange:"+downloadedSize + "  total:"+ fileSize +"  progress:"+downloadedSize*100/fileSize);
                     }
-                }).post();
+                }).postAsync();
     }
 }

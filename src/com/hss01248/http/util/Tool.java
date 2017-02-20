@@ -99,15 +99,27 @@ public class Tool {
     }
 
     public static String generateUrlOfGET(ConfigInfo info){
+        StringBuilder stringBuilder= new StringBuilder();
+        if(!info.url.startsWith("http")){
+            stringBuilder.append(NetDefaultConfig.baseUrl)
+                    .append(info.url);
+        }
+        if(!info.url.contains("?")){
+            stringBuilder.append("?");
+        }else if(!info.url.endsWith("&")){
+            stringBuilder.append("&");
+        }
         if(TextUtils.isNotEmpty(info.paramsStr)){
-            return info.url+ "?"+info.paramsStr;
+            stringBuilder.append(info.paramsStr);
+            if(!info.paramsStr.endsWith("&")){
+                stringBuilder.append("&");
+            }
         }
         String parms = Tool.getKeyValueStr(info.params);
-        String url = info.url;
         if(TextUtils.isNotEmpty(parms)){
-            url = url+"?"+parms;
+            stringBuilder.append(parms);
         }
-        return url;
+        return stringBuilder.toString();
     }
 
     public static String getKeyValueStr(Map<String,String> params) {
@@ -456,7 +468,7 @@ public class Tool {
 
                 @Override
                 protected Void doInBackground() {
-                    ACache.get(MyNetApi2.context).put(getCacheKey(configInfo),string, (int) (configInfo.cacheTime));
+                    ACache.getAsync(MyNetApi2.context).put(getCacheKey(configInfo),string, (int) (configInfo.cacheTime));
                     MyLog.d("caching resonse:"+string);
                     return null;
                 }

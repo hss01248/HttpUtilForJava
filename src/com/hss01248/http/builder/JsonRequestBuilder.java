@@ -16,7 +16,7 @@ public class JsonRequestBuilder<T> extends StringRequestBuilder{
 
 
     public Class<T> clazz;
-    public JsonRequestBuilder<T> setJsonClazz(Class<T> clazz) {
+    public JsonRequestBuilder<T> setJsonClazz(Class clazz) {
         this.clazz = clazz;
         return this;
     }

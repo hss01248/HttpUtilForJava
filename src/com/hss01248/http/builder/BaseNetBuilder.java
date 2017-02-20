@@ -36,17 +36,25 @@ public class BaseNetBuilder<T> {
     public int method ;
     public int type ;//= ConfigInfo.TYPE_STRING;
 
+    public boolean isSync;
+    public String responseCharset;
+
+    public BaseNetBuilder setResponseCharset(String responseCharset) {
+        this.responseCharset = responseCharset;
+        return this;
+    }
+
     public BaseNetBuilder(){
         headers = new HashMap<String,String>();
         params = new HashMap<String,String>();
         if(TextUtils.isNotEmpty(NetDefaultConfig.USER_AGENT)){
             headers.put("User-Agent", NetDefaultConfig.USER_AGENT);
         }
-
-        headers.put("Accept","*/*");
+       // headers.put("Accept","*/*");
         headers.put("Connection","Keep-Alive");
-
-
+        headers.put("User-Agent", "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)");
+        isSync = true;
+        responseCharset = "utf-8";
     }
 
 
@@ -82,15 +90,48 @@ public class BaseNetBuilder<T> {
         return this;
     }
 
-    public ConfigInfo<T> get(){
+    public ConfigInfo<T> getSync(){
         method = NetDefaultConfig.Method.GET;
+        //client.start(this);
+        return   execute();
+
+    }
+
+    public ConfigInfo<T> getAsync(){
+        method = NetDefaultConfig.Method.GET;
+        isSync = false;
         //client.start(this);
       return   execute();
 
     }
 
-    public ConfigInfo<T> post(){
+    public ConfigInfo<T> getAsync(MyNetListener<T> listener){
+        method = NetDefaultConfig.Method.GET;
+        this.listener = listener;
+        isSync = false;
+        //client.start(this);
+        return   execute();
+
+    }
+
+    public ConfigInfo<T> postSync(){
         method = NetDefaultConfig.Method.POST;
+        // client.start(this);
+        return  execute();
+
+    }
+
+    public ConfigInfo<T> postAsync(){
+        method = NetDefaultConfig.Method.POST;
+        // client.start(this);
+        return  execute();
+
+    }
+
+    public ConfigInfo<T> postAsync(MyNetListener<T> listener){
+        method = NetDefaultConfig.Method.POST;
+        this.listener = listener;
+        isSync = false;
         // client.start(this);
         return  execute();
 
