@@ -23,16 +23,49 @@ import java.util.Map;
 public class TestRequest {
 
     public static void main(String[] args){
-        MyNetApi2.init("http://www.qxinli.com:9001/api/");
+        MyNetApi2.init("http://www.qxinli.com:9005/api/");
         //HttpsUtil.addCrtificateFile("F:\\srca.cer");
         //testUpload();
 
         //testGetString();
 
-        testCaoliu();
+        //testCaoliu();
         //testPostString();
        // getAsync();
 
+        for (int i = 0; i < 1000; i++) {
+            testQxinli();
+        }
+
+
+
+    }
+
+    private static void testQxinli() {
+        MyNetApi2.requestString("http://qt.qxinli.com:9005/qt/testing/ts_question.action")
+                .addHeader("refer","http://qt.qxinli.com:9005/qt/testing/ts_selfTest.action?tableId=3")
+                 .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) ")
+                //.addHeader("Accept-Encoding","gzip, deflate, sdch")
+                .addParams("testId","79958")
+                .addParams("questionId","9")
+                .addParams("answerId","1")
+                // .addHeader("Accept-Language","en")
+                .setTimeout(200000)
+
+                //.addHeader("Accept-Encoding","gzip")
+                .callback(new MyNetListener() {
+                    @Override
+                    public void onSuccess(Object response, String resonseStr) {
+                        MyLog.d(resonseStr);
+                    }
+
+                    @Override
+                    public void onError(String msgCanShow) {
+                        super.onError(msgCanShow);
+                        MyLog.d(msgCanShow);
+                    }
+                })
+                .postAsync();
     }
 
     public static void get(){

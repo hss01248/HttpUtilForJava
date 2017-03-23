@@ -30,17 +30,15 @@ public class LogInterceptor implements Interceptor {
         MyLog.e("Content-Encoding:"+type);
 
 
-        byte[] responseBytes=response.body().bytes();
+       // byte[] responseBytes=response.body().bytes();
 
-        String content = new String(responseBytes,"GBK");
+       // String content = new String(responseBytes,"utf-8");
 
         //String content = response.body().string();
         //String content =  response.body().source().readString(Charset.forName("gb2312"));
        // GZIPInputStream inputStream = new GZIPInputStream(new ByteArrayInputStream(content.getBytes("utf-8")));
 
-        MyLog.i( "response body:\n" + content);
-        return response.newBuilder()
-                .body(okhttp3.ResponseBody.create(mediaType, content))
-                .build();
+       // MyLog.i( "response body:\n" + content);
+        return response;
     }
 }

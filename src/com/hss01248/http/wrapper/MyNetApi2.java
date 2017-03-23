@@ -1,12 +1,12 @@
 package com.hss01248.http.wrapper;
 
 
-import com.hss01248.http.apache.AhttpClient;
 import com.hss01248.http.builder.*;
 import com.hss01248.http.config.BaseNetBean;
 import com.hss01248.http.config.HttpsConfig;
 import com.hss01248.http.config.NetDefaultConfig;
 import com.hss01248.http.interfaces.IClient;
+import com.hss01248.http.okhttp.OkClient;
 import com.hss01248.http.util.MyLog;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class MyNetApi2 {
 
 
     public static IClient getClient() {
-        return AhttpClient.getInstance();
+        return OkClient.getInstance();
     }
 
 

@@ -13,7 +13,6 @@ import okhttp3.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -203,7 +202,7 @@ public class OkClient extends IClient {
                 String type = response.header("Content-Encoding");
                 /*byte[] bytes = response.body().bytes();
                 String str = new String(bytes,"gb2312");*/
-                String str =  response.body().source().readString(Charset.forName("gb2312"));
+               String str =  response.body().string();
 
                /* if("gzip".equals(type)){
                     str = GZipUtil.uncompress(str);
